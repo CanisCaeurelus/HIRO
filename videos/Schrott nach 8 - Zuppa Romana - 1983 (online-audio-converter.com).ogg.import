@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Schrott nach 8 - Zuppa Romana - 1983 (online-audio-converter.com).ogg-af9f7e11e367ffcf85c5db3acb006d57.oggstr"
+
+[deps]
+
+source_file="res://videos/Schrott nach 8 - Zuppa Romana - 1983 (online-audio-converter.com).ogg"
+dest_files=[ "res://.import/Schrott nach 8 - Zuppa Romana - 1983 (online-audio-converter.com).ogg-af9f7e11e367ffcf85c5db3acb006d57.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
