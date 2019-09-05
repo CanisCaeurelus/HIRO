@@ -11,13 +11,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if globals.Apressed:
-		pitch_scale = 0.5
-	elif globals.Spressed:
 		pitch_scale = 0.75
+	elif globals.Spressed:
+		pitch_scale = 0.9
 	elif globals.Dpressed:
-		pitch_scale = 2
+		pitch_scale = 1.1
 	elif globals.Fpressed:
-		pitch_scale = 4
+		pitch_scale = 1.5
 	else:
 		pitch_scale = 1.0
 	pass
