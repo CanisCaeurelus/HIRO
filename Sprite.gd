@@ -30,4 +30,8 @@ func _process(delta):
 		self.modulate = modulation
 	else:
 		self.modulate = modulation / 2
+		
+	get_node("string").offset.y += delta * 100
+	if(get_node("string").offset.y >= 500.0 ):
+		get_node("string").offset.y = 250
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://screen.gd" type="Script" id=1]
 [ext_resource path="res://videos/Schrott nach 8 - Zuppa Romana - 1983 (online-audio-converter.com).ogg" type="AudioStream" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://videos/18999744_1967688263460926_229044953718718464_n.webm" type="VideoStream" id=4]
 [ext_resource path="res://imadzes/Abaton.png" type="Texture" id=5]
 [ext_resource path="res://Sprite.gd" type="Script" id=6]
-[ext_resource path="res://imadzes/Sbaton.png" type="Texture" id=7]
-[ext_resource path="res://imadzes/Dbaton.png" type="Texture" id=8]
+[ext_resource path="res://imadzes/string.png" type="Texture" id=7]
+[ext_resource path="res://imadzes/Sbaton.png" type="Texture" id=8]
 [ext_resource path="res://imadzes/Fbaton.png" type="Texture" id=9]
-[ext_resource path="res://globals.gd" type="Script" id=10]
+[ext_resource path="res://imadzes/Dbaton.png" type="Texture" id=10]
+[ext_resource path="res://globals.gd" type="Script" id=11]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,32 +37,69 @@ autoplay = true
 [node name="buttonA" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 224.935, 448.826 )
+z_index = 1
 texture = ExtResource( 5 )
 script = ExtResource( 6 )
+
+[node name="string" type="Sprite" parent="buttonA"]
+self_modulate = Color( 1, 1, 1, 0.654902 )
+position = Vector2( 0.149368, -1317.23 )
+scale = Vector2( 1, 3 )
+z_as_relative = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 250 )
 
 [node name="buttonS" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 423.443, 446.434 )
-texture = ExtResource( 7 )
+z_index = 1
+texture = ExtResource( 8 )
 script = ExtResource( 6 )
 modulation = Color( 0, 1, 0.0156863, 1 )
 key = "S"
 
-[node name="buttonD" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 605.208, 444.042 )
-texture = ExtResource( 8 )
-script = ExtResource( 6 )
-modulation = Color( 0.898039, 1, 0, 1 )
-key = "D"
+[node name="string" type="Sprite" parent="buttonS"]
+self_modulate = Color( 1, 1, 1, 0.647059 )
+position = Vector2( -0.625, -1219.11 )
+scale = Vector2( 1, 3 )
+z_as_relative = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 250 )
 
 [node name="buttonF" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 806.107, 444.042 )
+z_index = 1
 texture = ExtResource( 9 )
 script = ExtResource( 6 )
 modulation = Color( 0.00784314, 0, 1, 1 )
 key = "F"
 
+[node name="string" type="Sprite" parent="buttonF"]
+self_modulate = Color( 1, 1, 1, 0.654902 )
+position = Vector2( -0.786987, -1221.87 )
+scale = Vector2( 1, 3 )
+z_as_relative = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 250 )
+
+[node name="buttonD" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 605.208, 444.042 )
+z_index = 3
+texture = ExtResource( 10 )
+script = ExtResource( 6 )
+modulation = Color( 0.898039, 1, 0, 1 )
+key = "D"
+
+[node name="string" type="Sprite" parent="buttonD"]
+self_modulate = Color( 1, 1, 1, 0.603922 )
+position = Vector2( 0.172913, -1257.36 )
+scale = Vector2( 1, 3 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 250 )
+
 [node name="globals" type="Node2D" parent="."]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
