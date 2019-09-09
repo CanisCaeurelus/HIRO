@@ -12,6 +12,7 @@ export var time = 0;
 export var paused = false;
 export var missedTap = false;
 export var timeToPixel = 500.0
+var points = 0.0
 signal A_tapped
 signal S_tapped
 signal D_tapped
@@ -55,3 +56,7 @@ func _tapDetect():
 		Ftapped = true
 	if !Fpressed:
 		Ftapped = false
+		
+func _updatePoints(var deltaPoints = 0.0):
+	points+=deltaPoints
+	$"../Control/RichTextLabel".text = str(points)

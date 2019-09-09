@@ -1,5 +1,5 @@
 extends Node2D
-
+onready var globals = get_node("globals")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -15,27 +15,32 @@ func _process(delta):
 
 func _input(ev):
 	if Input.is_key_pressed(KEY_A):
-		get_node("globals").Apressed = true 
+		globals.Apressed = true 
 	else:
-		get_node("globals").Apressed = false
+		globals.Apressed = false
 	if Input.is_key_pressed(KEY_S):
-		get_node("globals").Spressed = true 
+		globals.Spressed = true 
 	else:
-		get_node("globals").Spressed = false 
+		globals.Spressed = false 
 	if Input.is_key_pressed(KEY_D):
-		get_node("globals").Dpressed = true 
+		globals.Dpressed = true 
 	else:
-		get_node("globals").Dpressed = false 
+		globals.Dpressed = false 
 	if Input.is_key_pressed(KEY_F):
-		get_node("globals").Fpressed = true 
+		globals.Fpressed = true 
 	else:
-		get_node("globals").Fpressed = false 
+		globals.Fpressed = false 
 
 func _tapMissed():
+	globals._updatePoints(-1.0)
 	$"Control/tapMissedSound".play()
-
+	
 func _tapLate():
 	$"Control/tapLateSound".play()
 	
 func _tapEarly():
 	$"Control/tapEarlySound".play()
+
+func _tapGood():
+	globals._updatePoints(2.0)
+	$"Control/tapGoodSound".play()

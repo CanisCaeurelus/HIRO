@@ -16,6 +16,7 @@
 script = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
+editor/display_folded = true
 margin_right = 1023.0
 margin_bottom = 600.0
 
@@ -39,6 +40,15 @@ autoplay = true
 [node name="tapLateSound" type="AudioStreamPlayer2D" parent="Control"]
 
 [node name="tapEarlySound" type="AudioStreamPlayer2D" parent="Control"]
+
+[node name="tapGoodSound" type="AudioStreamPlayer2D" parent="Control"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+modulate = Color( 0.368627, 0.027451, 0.027451, 1 )
+margin_left = 930.859
+margin_top = 16.6555
+margin_right = 970.859
+margin_bottom = 56.6555
 
 [node name="buttonA" type="Sprite" parent="."]
 editor/display_folded = true
