@@ -4,10 +4,18 @@ export var Apressed = false;
 export var Spressed = false;
 export var Dpressed = false;
 export var Fpressed = false;
+var Atapped = false;
+var Stapped = false;
+var Dtapped = false;
+var Ftapped = false;
 export var time = 0;
 export var paused = false;
 export var missedTap = false;
 export var timeToPixel = 500.0
+signal A_tapped
+signal S_tapped
+signal D_tapped
+signal F_tapped
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -20,9 +28,34 @@ func _ready():
 func _process(delta):
 	if !paused:
 		time+=delta
+		_tapDetect()
 	pass
 
 func tapMissed():
 	$"../Control/tapMissedSound".play()
 	print("yolo")
+
+func _tapDetect():
+	if Apressed and !Atapped:
+		emit_signal("A_tapped")
+		Atapped = true
+	if !Apressed:
+		Atapped = false
 	
+	if Spressed and !Stapped:
+		emit_signal("S_tapped")
+		Stapped = true
+	if !Spressed:
+		Stapped = false
+	
+	if Dpressed and !Dtapped:
+		emit_signal("D_tapped")
+		Dtapped = true
+	if !Dpressed:
+		Dtapped = false
+		
+	if Fpressed and !Ftapped:
+		emit_signal("F_tapped")
+		Ftapped = true
+	if !Fpressed:
+		Ftapped = false
