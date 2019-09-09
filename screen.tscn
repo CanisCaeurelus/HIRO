@@ -36,7 +36,12 @@ autoplay = true
 
 [node name="tapMissedSound" type="AudioStreamPlayer2D" parent="Control"]
 
+[node name="tapLateSound" type="AudioStreamPlayer2D" parent="Control"]
+
+[node name="tapEarlySound" type="AudioStreamPlayer2D" parent="Control"]
+
 [node name="buttonA" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 224.935, 448.826 )
 z_index = 1
 texture = ExtResource( 5 )
@@ -88,6 +93,7 @@ texture = ExtResource( 7 )
 offset = Vector2( 0, 250 )
 
 [node name="buttonD" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 605.208, 444.042 )
 z_index = 3
 texture = ExtResource( 10 )

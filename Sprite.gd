@@ -43,3 +43,4 @@ func _process(delta):
 	if(get_node("string").offset.y >= 500.0 ):
 		get_node("string").offset.y = 250
 	pass
+

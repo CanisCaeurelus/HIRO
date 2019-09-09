@@ -31,10 +31,6 @@ func _process(delta):
 		_tapDetect()
 	pass
 
-func tapMissed():
-	$"../Control/tapMissedSound".play()
-	print("yolo")
-
 func _tapDetect():
 	if Apressed and !Atapped:
 		emit_signal("A_tapped")

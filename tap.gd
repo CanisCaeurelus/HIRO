@@ -11,7 +11,10 @@ signal earlyTap
 var selfDestroy = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("missedTap", get_node("../../globals"), "tapMissed")
+	self.connect("missedTap", get_node("../../"), "_tapMissed")
+	self.connect("lateTap", get_node("../../"), "_tapLate")
+	self.connect("earlyTap", get_node("../../"), "_tapEarly")
+
 	match get_parent().key:
 		"A","a":
 			get_node("../../globals").connect("A_tapped", self, "_tapHit")

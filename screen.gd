@@ -30,3 +30,12 @@ func _input(ev):
 		get_node("globals").Fpressed = true 
 	else:
 		get_node("globals").Fpressed = false 
+
+func _tapMissed():
+	$"Control/tapMissedSound".play()
+
+func _tapLate():
+	$"Control/tapLateSound".play()
+	
+func _tapEarly():
+	$"Control/tapEarlySound".play()
