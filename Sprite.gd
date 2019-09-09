@@ -2,6 +2,7 @@ extends Sprite
 
 export var modulation = Color(1.0,0.0,0.0);
 export var key = "A"
+export var tapArray = [1, 2.0, 1.5, 2.0,0,0,0,0,0,0,0,0,0,0]
 onready var globals = get_node("../globals")
 var Apressed = false
 var Spressed = false
@@ -13,6 +14,13 @@ var Fpressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.modulate = modulation
+	var tapScene = load("res://tap.tscn")
+	for tapTime in tapArray:
+		if(tapTime):
+			var tapNode = tapScene.instance()
+			tapNode.tapTime = tapTime
+			self.add_child(tapNode)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,11 +35,11 @@ func _process(delta):
 	elif ("F" == key or "f" == key):
 		pressed = globals.Fpressed 
 	if pressed:
-		self.modulate = modulation
+		self.self_modulate = modulation
 	else:
-		self.modulate = modulation / 2
+		self.self_modulate = modulation / 2
 		
-	get_node("string").offset.y += delta * 100
+	get_node("string").offset.y += delta * globals.timeToPixel / 5.0
 	if(get_node("string").offset.y >= 500.0 ):
 		get_node("string").offset.y = 250
 	pass
