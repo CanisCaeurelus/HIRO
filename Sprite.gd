@@ -3,6 +3,8 @@ extends Sprite
 export var modulation = Color(1.0,0.0,0.0);
 export var key = "A"
 export var tapArray = [1, 2.0, 1.5, 2.0,0,0,0,0,0,0,0,0,0,0]
+export var slideArray = [[1,2],[5,8]]
+
 onready var globals = get_node("../globals")
 var Apressed = false
 var Spressed = false
@@ -22,6 +24,13 @@ func _ready():
 			var tapNode = tapScene.instance()
 			tapNode.tapTime = tapTime
 			self.add_child(tapNode)
+	var slideScene = load("res://slide.tscn")
+	for slideTime in slideArray:
+		if(slideTime):
+			var slideNode = slideScene.instance()
+			slideNode.tapTime = slideTime[0]
+			slideNode.tapPeriod = slideTime[1]
+			self.add_child(slideNode)
 	match key:
 		"A","a":
 			get_node("../globals").connect("A_tapped", self, "_tapHit")

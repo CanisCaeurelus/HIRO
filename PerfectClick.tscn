@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://imadzes/baton.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.576159, 0.993378, 1 )
+colors = PoolColorArray( 0.919861, 0.93884, 0.121022, 1, 0.957031, 0.924087, 0.429916, 1, 0.34902, 0.0588235, 0.0588235, 0, 1, 1, 1, 0 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CPUParticles2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var instanceTime = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.emitting = true
+	instanceTime = 0
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	instanceTime += delta
+	if (instanceTime > self.lifetime):
+		self.free()
+	pass
+"
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+show_behind_parent = true
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 180.0
+gravity = Vector2( 0, 998.8 )
+initial_velocity = 334.34
+scale_amount = 0.2
+color_ramp = SubResource( 3 )
+script = SubResource( 2 )

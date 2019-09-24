@@ -42,11 +42,11 @@ func _process(delta):
 
 func _tapHit():
 	var timeDifference = (globals.time - tapTime)
-	if !(timeDifference > 0.1) and timeDifference > 0.05:
+	if !(timeDifference > 0.2) and timeDifference > 0.15:
 		emit_signal("lateTap")
 		selfDestroy = true
 	elif timeDifference > -0.05:
-		emit_signal("goodTap")
+		emit_signal("goodTap",get_parent())
 		selfDestroy = true
 	elif timeDifference > -0.1:
 		emit_signal("earlyTap")

@@ -19,6 +19,10 @@ config/name="HIRO"
 run/main_scene="res://screen.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

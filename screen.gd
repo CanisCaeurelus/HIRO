@@ -3,6 +3,7 @@ onready var globals = get_node("globals")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var perfectParticles = load("res://PerfectClick.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +42,8 @@ func _tapLate():
 func _tapEarly():
 	$"Control/tapEarlySound".play()
 
-func _tapGood():
+func _tapGood(var letter):
 	globals._updatePoints(2.0)
+	var particles = perfectParticles.instance()
+	letter.add_child(particles)
 	$"Control/tapGoodSound".play()

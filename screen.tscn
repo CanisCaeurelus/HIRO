@@ -3,20 +3,19 @@
 [ext_resource path="res://screen.gd" type="Script" id=1]
 [ext_resource path="res://videos/Schrott nach 8 - Zuppa Romana - 1983 (online-audio-converter.com).ogg" type="AudioStream" id=2]
 [ext_resource path="res://AudioStreamPlayer2D.gd" type="Script" id=3]
-[ext_resource path="res://videos/18999744_1967688263460926_229044953718718464_n.webm" type="VideoStream" id=4]
-[ext_resource path="res://imadzes/Abaton.png" type="Texture" id=5]
-[ext_resource path="res://Sprite.gd" type="Script" id=6]
-[ext_resource path="res://imadzes/string.png" type="Texture" id=7]
-[ext_resource path="res://imadzes/Sbaton.png" type="Texture" id=8]
-[ext_resource path="res://imadzes/Fbaton.png" type="Texture" id=9]
-[ext_resource path="res://imadzes/Dbaton.png" type="Texture" id=10]
-[ext_resource path="res://globals.gd" type="Script" id=11]
+[ext_resource path="res://imadzes/Abaton.png" type="Texture" id=4]
+[ext_resource path="res://Sprite.gd" type="Script" id=5]
+[ext_resource path="res://imadzes/string.png" type="Texture" id=6]
+[ext_resource path="res://imadzes/Sbaton.png" type="Texture" id=7]
+[ext_resource path="res://imadzes/Fbaton.png" type="Texture" id=8]
+[ext_resource path="res://imadzes/Dbaton.png" type="Texture" id=9]
+[ext_resource path="res://globals.gd" type="Script" id=10]
+[ext_resource path="res://PerfectClick.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
-editor/display_folded = true
 margin_right = 1023.0
 margin_bottom = 600.0
 
@@ -31,9 +30,11 @@ margin_left = 3.42528
 margin_top = 9.51128
 margin_right = 1014.43
 margin_bottom = 578.511
-stream = ExtResource( 4 )
 volume_db = -80.0
 autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="tapMissedSound" type="AudioStreamPlayer2D" parent="Control"]
 
@@ -51,11 +52,10 @@ margin_right = 970.859
 margin_bottom = 56.6555
 
 [node name="buttonA" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 224.935, 448.826 )
 z_index = 1
-texture = ExtResource( 5 )
-script = ExtResource( 6 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
 tapArray = [ 1.0, 2.0, 3.0, 4.0, 5, 6, 7, 8, 9, 10, 0, 0, 0, 0 ]
 
 [node name="string" type="Sprite" parent="buttonA"]
@@ -63,15 +63,14 @@ self_modulate = Color( 1, 1, 1, 0.654902 )
 position = Vector2( 0.149368, -1317.23 )
 scale = Vector2( 1, 3 )
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, 250 )
 
 [node name="buttonS" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 423.443, 446.434 )
 z_index = 1
-texture = ExtResource( 8 )
-script = ExtResource( 6 )
+texture = ExtResource( 7 )
+script = ExtResource( 5 )
 modulation = Color( 0, 1, 0.0156863, 1 )
 key = "S"
 tapArray = [ 1, 1.5, 2.0, 2.5, 3, 4, 6, 8, 10, 12, 0, 0, 0, 0 ]
@@ -81,15 +80,14 @@ self_modulate = Color( 1, 1, 1, 0.647059 )
 position = Vector2( -0.625, -1219.11 )
 scale = Vector2( 1, 3 )
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, 250 )
 
 [node name="buttonF" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 806.107, 444.042 )
 z_index = 1
-texture = ExtResource( 9 )
-script = ExtResource( 6 )
+texture = ExtResource( 8 )
+script = ExtResource( 5 )
 modulation = Color( 0.00784314, 0, 1, 1 )
 key = "F"
 tapArray = [ 5, 10.0, 15.0, 20.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
@@ -99,15 +97,14 @@ self_modulate = Color( 1, 1, 1, 0.654902 )
 position = Vector2( -0.786987, -1221.87 )
 scale = Vector2( 1, 3 )
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, 250 )
 
 [node name="buttonD" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 605.208, 444.042 )
 z_index = 3
-texture = ExtResource( 10 )
-script = ExtResource( 6 )
+texture = ExtResource( 9 )
+script = ExtResource( 5 )
 modulation = Color( 0.898039, 1, 0, 1 )
 key = "D"
 tapArray = [ 6, 7.0, 8.0, 9.0, 10.0, 10.5, 11.0, 11.5, 12.0, 0.0, 0, 0, 0, 0 ]
@@ -118,8 +115,10 @@ position = Vector2( 0.172913, -1257.36 )
 scale = Vector2( 1, 3 )
 z_index = 1
 z_as_relative = false
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, 250 )
 
 [node name="globals" type="Node2D" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
+
+[node name="CPUParticles2D" parent="." instance=ExtResource( 11 )]

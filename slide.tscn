@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://imadzes/stringSlide.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+export var tapTime = 0
+export var tapPeriod = 0
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+onready var globals = get_node(\"../../globals\")
+var missedSignalSent = false
+signal lateTap
+signal earlyTap
+signal goodTap
+signal missedTap
+var selfDestroy = false
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.scale.y = (globals.timeToPixel * tapPeriod)/2.0
+	match get_parent().key:
+		\"A\",\"a\":
+			get_node(\"../../globals\").connect(\"A_tapped\", self, \"_tapHit\")
+		\"S\",\"s\":
+			get_node(\"../../globals\").connect(\"S_tapped\", self, \"_tapHit\")
+		\"D\",\"d\":
+			get_node(\"../../globals\").connect(\"D_tapped\", self, \"_tapHit\")
+		\"F\",\"f\":
+			get_node(\"../../globals\").connect(\"F_tapped\", self, \"_tapHit\")
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var timeDifference = (globals.time - tapTime)
+	self.position.y = timeDifference * globals.timeToPixel
+	if timeDifference > (tapPeriod + 1.0) :
+		emit_signal(\"missedTap\")
+		selfDestroy = true
+	
+	if selfDestroy:
+		self.free()
+	pass
+
+func _tapHit():
+	var timeDifference = (globals.time - tapTime)
+
+
+"
+
+[node name="slide" type="Sprite"]
+z_index = -1
+texture = ExtResource( 1 )
+script = SubResource( 1 )
