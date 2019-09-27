@@ -7,6 +7,8 @@ script/source = "extends Sprite
 
 export var tapTime = 0
 export var tapPeriod = 0
+var OTimeStart
+var OTimeStop
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
@@ -19,6 +21,8 @@ signal missedTap
 var selfDestroy = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	OTimeStart = load(\"res://Time.gd\").new(tapTime,globals)
+	OTimeStop = load(\"res://Time.gd\").new(tapTime + tapPeriod,globals)
 	self.scale.y = (globals.timeToPixel * tapPeriod)/2.0
 	match get_parent().key:
 		\"A\",\"a\":
@@ -34,7 +38,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var timeDifference = (globals.time - tapTime)
-	self.position.y = timeDifference * globals.timeToPixel
+	self.position.y = (timeDifference - tapPeriod/4) * globals.timeToPixel
 	if timeDifference > (tapPeriod + 1.0) :
 		emit_signal(\"missedTap\")
 		selfDestroy = true
@@ -44,7 +48,15 @@ func _process(delta):
 	pass
 
 func _tapHit():
-	var timeDifference = (globals.time - tapTime)
+	if OTimeStart._isLate(globals.time):
+		emit_signal(\"lateTap\")
+		selfDestroy = true
+	elif OTimeStart._isFitting(globals.time):
+		emit_signal(\"goodTap\",get_parent())
+		selfDestroy = true
+	elif OTimeStart._isEarly(globals.time):
+		emit_signal(\"earlyTap\")
+		selfDestroy = true
 
 
 "

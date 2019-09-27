@@ -4,14 +4,19 @@ export var tapTime = 0
 # var a = 2
 # var b = "text"
 onready var globals = get_node("../../globals")
+var OTime
+
 var missedSignalSent = false
+var selfDestroy = false
+
 signal lateTap
 signal earlyTap
 signal goodTap
 signal missedTap
-var selfDestroy = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	OTime= load("res://Time.gd").new(tapTime,globals)
 	self.connect("lateTap", get_node("../../"), "_tapLate")
 	self.connect("earlyTap", get_node("../../"), "_tapEarly")
 	self.connect("goodTap", get_node("../../"), "_tapGood")
@@ -37,19 +42,18 @@ func _process(delta):
 		selfDestroy = true
 	
 	if selfDestroy:
+		OTime.free()
 		self.free()
 	pass
 
 func _tapHit():
 	var timeDifference = (globals.time - tapTime)
-	if !(timeDifference > 0.2) and timeDifference > 0.15:
+	if OTime._isLate(globals.time):
 		emit_signal("lateTap")
 		selfDestroy = true
-	elif timeDifference > -0.05:
+	elif OTime._isFitting(globals.time):
 		emit_signal("goodTap",get_parent())
 		selfDestroy = true
-	elif timeDifference > -0.1:
+	elif OTime._isEarly(globals.time):
 		emit_signal("earlyTap")
 		selfDestroy = true
-
-

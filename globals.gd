@@ -12,6 +12,12 @@ export var time = 0;
 export var paused = false;
 export var missedTap = false;
 export var timeToPixel = 500.0
+
+export var earlyFitTime = 0.1
+export var lateFitTime = 0.1
+export var earlyTime = 0.2
+export var lateTime = 0.2
+
 var points = 0.0
 signal A_tapped
 signal S_tapped
